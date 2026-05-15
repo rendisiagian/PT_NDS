@@ -16,6 +16,17 @@
 - **Auth**: Single seeded admin from `.env`; protected `/api/admin/*` endpoints.
 
 ## Implemented (2025-12)
+### CMS (Dec update — full no-code admin)
+- Admin login at `/admin/login` with 5 tabs:
+  1. **Pesan Masuk** — view/mark-read/delete contact inquiries
+  2. **Konten Halaman** — bilingual key/value editor grouped by page (Home, About, Services, Machines, Portfolio, Contact); 33 settings keys including hero text, CTA banner, vision, mission (array), kata sambutan (array of paragraphs), CEO info, address, email, phone, WhatsApp, Instagram, hours, maps location
+  3. **Layanan/Mesin/dll** — 7 sub-collections fully CRUD: services (6), machines (3), machine_specs (5), portfolio_sectors (6), testimonials (2), process_steps (5), values (4) — all bilingual, sortable by `order`
+  4. **Blog** — bilingual posts with cover image via MediaPicker, tags, draft/published
+  5. **Media** — image library (max 5 MB JPEG/PNG/WebP/GIF/SVG, base64 in MongoDB), upload + copy-URL + delete
+- All page content now reads from `SiteContext` with `translations.js` as fallback
+- `MediaPicker` reusable component (upload file OR paste URL)
+- Backend allowlist `ALLOWED_COLLECTIONS` prevents Mongo collection-name path traversal
+- Idempotent seeding: settings seeded per-missing-key, collections only if empty
 ### Frontend (Meta-style design system)
 - Bilingual content via `LanguageContext` (`id` / `en`), persistent to localStorage
 - Pages: Home, About, Services, Machines, Portfolio, Blog (list + detail), Contact
