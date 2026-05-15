@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone, MessageCircle, Instagram } from "lucide-react";
 import Logo from "@/components/Logo";
 import { useLang } from "@/contexts/LanguageContext";
+import { useSite, getText, getValue } from "@/contexts/SiteContext";
 
 export default function Footer() {
-    const { t } = useLang();
+    const { t, lang } = useLang();
+    const { settings } = useSite();
+
+    const address = getText(settings, "contact_address", lang, t.contact.addressLine);
+    const email = getValue(settings, "contact_email", t.contact.emailValue);
+    const phone = getValue(settings, "contact_phone", "");
+    const whatsapp = getValue(settings, "contact_whatsapp", "");
+    const instagram = getValue(settings, "contact_instagram", "");
+
     return (
         <footer className="bg-canvas border-t border-hairline-soft" data-testid="footer">
             <div className="container-page py-section">
@@ -18,14 +27,21 @@ export default function Footer() {
                         <div className="mt-6 space-y-3 text-sm text-ink-charcoal">
                             <p className="flex items-start gap-2" data-testid="footer-address">
                                 <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-ink-stone" />
-                                <span>{t.contact.addressLine}</span>
+                                <span>{address}</span>
                             </p>
                             <p className="flex items-center gap-2" data-testid="footer-email">
                                 <Mail className="w-4 h-4 text-ink-stone" />
-                                <a href={`mailto:${t.contact.emailValue}`} className="hover:text-cobalt">
-                                    {t.contact.emailValue}
-                                </a>
+                                <a href={`mailto:${email}`} className="hover:text-cobalt break-all">{email}</a>
                             </p>
+                            {phone && (
+                                <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-ink-stone" /><a href={`tel:${phone}`} className="hover:text-cobalt">{phone}</a></p>
+                            )}
+                            {whatsapp && (
+                                <p className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-ink-stone" /><a href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noreferrer" className="hover:text-cobalt">WhatsApp · {whatsapp}</a></p>
+                            )}
+                            {instagram && (
+                                <p className="flex items-center gap-2"><Instagram className="w-4 h-4 text-ink-stone" /><a href={`https://instagram.com/${instagram.replace(/^@/, "")}`} target="_blank" rel="noreferrer" className="hover:text-cobalt">@{instagram.replace(/^@/, "")}</a></p>
+                            )}
                         </div>
                     </div>
 

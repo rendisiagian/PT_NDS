@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SiteProvider } from "@/contexts/SiteContext";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -50,24 +51,26 @@ export default function App() {
             <BrowserRouter>
                 <LanguageProvider>
                     <AuthProvider>
-                        <ScrollToTop />
-                        <GoogleAnalytics />
-                        <Shell>
-                            <Routes>
-                                <Route path="/" element={<HomePage />} />
-                                <Route path="/about" element={<AboutPage />} />
-                                <Route path="/services" element={<ServicesPage />} />
-                                <Route path="/machines" element={<MachinesPage />} />
-                                <Route path="/portfolio" element={<PortfolioPage />} />
-                                <Route path="/blog" element={<BlogPage />} />
-                                <Route path="/blog/:slug" element={<BlogPostPage />} />
-                                <Route path="/contact" element={<ContactPage />} />
-                                <Route path="/admin/login" element={<AdminLoginPage />} />
-                                <Route path="/admin" element={<AdminDashboard />} />
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </Shell>
-                        <Toaster />
+                        <SiteProvider>
+                            <ScrollToTop />
+                            <GoogleAnalytics />
+                            <Shell>
+                                <Routes>
+                                    <Route path="/" element={<HomePage />} />
+                                    <Route path="/about" element={<AboutPage />} />
+                                    <Route path="/services" element={<ServicesPage />} />
+                                    <Route path="/machines" element={<MachinesPage />} />
+                                    <Route path="/portfolio" element={<PortfolioPage />} />
+                                    <Route path="/blog" element={<BlogPage />} />
+                                    <Route path="/blog/:slug" element={<BlogPostPage />} />
+                                    <Route path="/contact" element={<ContactPage />} />
+                                    <Route path="/admin/login" element={<AdminLoginPage />} />
+                                    <Route path="/admin" element={<AdminDashboard />} />
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
+                            </Shell>
+                            <Toaster />
+                        </SiteProvider>
                     </AuthProvider>
                 </LanguageProvider>
             </BrowserRouter>

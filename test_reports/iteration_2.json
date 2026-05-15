@@ -1,0 +1,45 @@
+{
+  "summary": "CMS endpoints + full-stack regression. Backend: 48/48 pytest passing (24 prior + 24 new CMS). New tests cover /api/site/*, /api/admin/site/settings/*, /api/admin/collections/* CRUD on all 7 allowlisted collections (services, machines, machine_specs, portfolio_sectors, testimonials, process_steps, values), and /api/admin/media upload/list/delete with public binary fetch via /api/media/{id}. Validated: 33 seeded settings keys, sorted-by-order collection lists, 401 unauth on all admin routes, 400 on bad setting key (uppercase/dash), 404 on invalid collection name (allowlist), 400 on non-image upload, base64 not leaked in admin media list. Frontend: all 6 public pages (Home, About, Services, Machines, Portfolio, Contact) render expected CMS-driven content from SiteContext (hero text, kata sambutan, services, machines, sectors, testimonials, address/email/hours). Admin login → 5 tabs (Pesan Masuk, Konten Halaman, Layanan/Mesin/dll, Blog, Media) all load with proper data-testid coverage. Collections editor shows all 7 sub-tabs and item rows; Settings editor shows grouped accordion with bilingual id/en inputs and per-field Simpan buttons; Media tab shows upload control with 5MB JPEG/PNG/WebP/GIF/SVG hint; Blog tab lists 3 seeded posts with Edit/Delete/Artikel-baru actions.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/admin/media", "issue": "MIME type is taken from client-supplied Content-Type only; no magic-byte sniffing. A malicious client could upload non-image bytes labeled image/png. Low risk for admin-only endpoint but worth tightening."},
+      {"endpoint": "GET /api/site/all", "issue": "Iterates ALLOWED_COLLECTIONS sequentially with await; could be parallelized with asyncio.gather for ~7x speedup on cold path."},
+      {"endpoint": "PUT /api/admin/site/settings/{key}", "issue": "Payload value is Dict[str, Any] with no structural validation — admin can store arbitrary shapes that frontend may not handle. Acceptable for CMS but consider per-key schema in future."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_nuri_backend.py",
+    "/app/backend/tests/test_nuri_cms.py",
+    "/app/test_reports/pytest/pytest_results.xml",
+    "/app/test_reports/pytest/cms_results.xml"
+  ],
+  "action_items": [
+    "Optional: add magic-byte (Pillow open) verification on /api/admin/media uploads to defend against MIME spoofing.",
+    "Optional: parallelize the 7 collection reads in GET /api/site/all via asyncio.gather.",
+    "Carry-forward from iter_1 (still applicable): production CORS origins, cookie secure=True behind HTTPS, brute-force lockout on /api/auth/login, contact-form rate limit."
+  ],
+  "critical_code_review_comments": [
+    "ALLOWED_COLLECTIONS allowlist is enforced consistently on every CMS route (public read, admin list/create/update/delete) — no path traversal into arbitrary Mongo collections.",
+    "Setting key regex ^[a-z][a-z0-9_]{0,80}$ correctly rejects uppercase/dashes and limits length.",
+    "Media stored as base64 inside Mongo — fine for small-scale CMS but at scale move to object storage; current 5MB cap is sensible.",
+    "All projections exclude _id; admin media list also excludes data_base64 — correct ObjectId/payload hygiene.",
+    "Seed logic is idempotent: settings seeded per-key (missing only), collections seeded only when empty — safe across restarts.",
+    "server.py is 743 lines — borderline; splitting into routers (auth, blog, cms, media) is recommended before adding more features."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_nuri_cms.py (new)"
+  ],
+  "success_rate": {"backend": "100% (48/48)", "frontend": "100% smoke-tested across 6 public pages + 5 admin tabs"},
+  "test_credentials": "admin@nuridwisukses.co.id / NuriAdmin2024! (login verified end-to-end)",
+  "seed_data_creation": "Tests create TEST_-prefixed items (services row + media blob) and clean up via DELETE in the same test. Restored hero_title setting to original Indonesian/English text after the persistence test. No leftover test data.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Two pytest suites cover the API surface: test_nuri_backend.py (auth/inquiries/blog) and test_nuri_cms.py (settings/collections/media). Both green. Frontend data-testids are excellent: admin-tab-{inquiries|settings|collections|blog|media}, collection-tab-{name}, collection-new-btn, collection-row-{id}, setting-{key}, setting-save-{key}, settings-group-{label}, media-upload-btn, admin-new-post-btn, admin-post-row-{id}, admin-login-{email|password|submit}. Use these for any deeper e2e flows.",
+  "rca_of_the_issue": "N/A — no failures encountered."
+}
