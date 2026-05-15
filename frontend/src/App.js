@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PromoBanner from "@/components/PromoBanner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 import HomePage from "@/pages/Home";
 import AboutPage from "@/pages/About";
@@ -50,6 +51,7 @@ export default function App() {
                 <LanguageProvider>
                     <AuthProvider>
                         <ScrollToTop />
+                        <GoogleAnalytics />
                         <Shell>
                             <Routes>
                                 <Route path="/" element={<HomePage />} />
