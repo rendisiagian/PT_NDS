@@ -24,7 +24,9 @@ export default function ContactPage() {
     const whatsapp = getValue(settings, "contact_whatsapp", "");
     const instagram = getValue(settings, "contact_instagram", "");
     const hours = getText(settings, "contact_hours", lang, c.hoursValue);
-    const mapsQuery = getValue(settings, "contact_maps_query", "Pasar Kemis Tangerang Banten");
+    const mapLat = getValue(settings, "contact_map_lat", "");
+    const mapLng = getValue(settings, "contact_map_lng", "");
+    const mapsQuery = mapLat && mapLng ? `${mapLat},${mapLng}` : getValue(settings, "contact_maps_query", "Pasar Kemis Tangerang Banten");
 
     const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 

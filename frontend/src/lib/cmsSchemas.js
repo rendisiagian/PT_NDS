@@ -15,6 +15,7 @@ export const SETTINGS_GROUPS = [
     {
         page: "Home (Beranda)",
         items: [
+            { key: "site_logo", label: "Logo situs", type: "image" },
             { key: "hero_badge", label: "Badge atas hero", type: "text" },
             { key: "hero_title", label: "Judul Hero", type: "textarea" },
             { key: "hero_sub", label: "Sub-judul Hero", type: "textarea" },
@@ -73,6 +74,8 @@ export const SETTINGS_GROUPS = [
             { key: "contact_instagram", label: "Instagram username", type: "shorttext", placeholder: "nuridwisukses" },
             { key: "contact_hours", label: "Jam operasional", type: "text" },
             { key: "contact_maps_query", label: "Lokasi peta (alamat untuk Google Maps)", type: "shorttext" },
+            { key: "contact_map_lat", label: "Koordinat peta: latitude", type: "shorttext", placeholder: "-6.23" },
+            { key: "contact_map_lng", label: "Koordinat peta: longitude", type: "shorttext", placeholder: "106.59" },
         ],
     },
 ];

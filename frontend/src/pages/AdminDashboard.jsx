@@ -599,7 +599,7 @@ function MediaPanel() {
         if (!file) return;
         const fd = new FormData();
         fd.append("file", file);
-        await api.post("/admin/media", fd, { headers: { "Content-Type": "multipart/form-data" } });
+        await api.post("/admin/media", fd);
         load();
     };
     const del = async (id) => {

@@ -1,15 +1,19 @@
 import React from "react";
+import { useSite, getImage } from "@/contexts/SiteContext";
 
 /**
  * NR mark — recreated based on the NURI DWI SUKSES PDF logo.
  * Blue circular band with orange sunburst rays + bold NR monogram.
  */
-export default function Logo({ size = 40, withWordmark = false, className = "" }) {
+export default function Logo({ size = 40, withWordmark = false, className = "", src, alt = "PT. NURI DWI SUKSES" }) {
+    const { settings } = useSite();
+    const logoSrc = src || getImage(settings, "site_logo", "/logo_nds.jpg");
+
     return (
         <div className={`flex items-center gap-3 ${className}`} data-testid="nds-logo">
             <img
-                src="/logo_nds.jpg"
-                alt="PT. NURI DWI SUKSES"
+                src={logoSrc}
+                alt={alt}
                 width={size}
                 height={size}
                 className="object-contain"

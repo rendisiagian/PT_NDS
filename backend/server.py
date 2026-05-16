@@ -556,6 +556,7 @@ SEED_SETTINGS = {
     "hero_title": {"id": "Plat polymer presisi. Untuk percetakan yang menuntut hasil sempurna.", "en": "Precision polymer plates. For printers who demand perfect results."},
     "hero_sub": {"id": "Tepat. Cepat. Terukur. Kami memproses plat polymer dengan teknologi Computer-to-Plate (CTP) modern untuk hasil cetak yang konsisten setiap kali.", "en": "Accurate. Fast. Measurable. We process polymer plates with modern Computer-to-Plate (CTP) technology for consistent print quality, every time."},
     "hero_image": {"url": ""},
+    "site_logo": {"url": "/logo_nds.jpg"},
     # CTA banner
     "cta_banner_title": {"id": "Siap menaikkan kualitas cetak Anda?", "en": "Ready to raise your print quality?"},
     "cta_banner_body": {"id": "Diskusikan kebutuhan plat polymer Anda dengan tim kami. Konsultasi gratis.", "en": "Discuss your polymer plate needs with our team. Free consultation."},
@@ -610,6 +611,8 @@ SEED_SETTINGS = {
     "contact_instagram": {"value": ""},
     "contact_hours": {"id": "Senin – Sabtu, 08.00 – 17.00 WIB", "en": "Monday – Saturday, 08:00 – 17:00 WIB"},
     "contact_maps_query": {"value": "Pasar Kemis Tangerang Banten"},
+    "contact_map_lat": {"value": ""},
+    "contact_map_lng": {"value": ""},
 }
 
 

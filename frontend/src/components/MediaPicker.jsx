@@ -19,9 +19,7 @@ export default function MediaPicker({ value, onChange, label = "Image", testid }
         try {
             const fd = new FormData();
             fd.append("file", file);
-            const { data } = await api.post("/admin/media", fd, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+            const { data } = await api.post("/admin/media", fd);
             onChange(data.url);
         } catch (err) {
             setError(err.response?.data?.detail || "Upload gagal");
