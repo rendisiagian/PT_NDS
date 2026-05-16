@@ -9,26 +9,29 @@ module.exports = {
                 display: ['Manrope', 'Inter', 'Helvetica', 'Arial', 'sans-serif'],
             },
             colors: {
-                // Meta-inspired tokens
+                // Brand blues (inspired by ciptasukseslabelindo + Meta)
                 cobalt: {
-                    DEFAULT: '#0064E0',
-                    deep: '#0457CB',
-                    soft: '#0091FF',
+                    DEFAULT: '#1E3FAD',  // deep royal blue (primary)
+                    deep: '#152D85',     // pressed state
+                    soft: '#4A78E8',     // hover/glow accent
+                    bright: '#2A4CCB',   // bright accent
+                    sky: '#E8F0FF',      // very light sky tint
+                    mist: '#F4F8FF',     // pale background tint
                 },
                 ink: {
-                    deep: '#0A1317',
-                    DEFAULT: '#1C1E21',
-                    charcoal: '#444950',
-                    slate: '#4B4C4F',
-                    steel: '#5D6C7B',
-                    stone: '#8595A4',
+                    deep: '#0A1A3D',     // navy-tinted dark for headings
+                    DEFAULT: '#1C2541',  // body text with subtle blue undertone
+                    charcoal: '#444F6B',
+                    slate: '#4B5570',
+                    steel: '#5D6C8A',
+                    stone: '#8595B4',
                 },
                 hairline: {
-                    DEFAULT: '#CED0D4',
-                    soft: '#DEE3E9',
+                    DEFAULT: '#D6DCE8',
+                    soft: '#E6EBF3',
                 },
                 canvas: '#FFFFFF',
-                'surface-soft': '#F1F4F7',
+                'surface-soft': '#F4F8FF',
                 // semantic
                 success: '#31A24C',
                 warning: '#F7B928',

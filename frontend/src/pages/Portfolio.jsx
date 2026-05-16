@@ -26,7 +26,7 @@ export default function PortfolioPage() {
                 <p className="mt-6 max-w-3xl text-base sm:text-lg text-ink-charcoal leading-relaxed">{sub}</p>
             </section>
 
-            <section className="bg-surface-soft" data-testid="portfolio-sectors">
+            <section className="bg-sky-tint" data-testid="portfolio-sectors">
                 <div className="container-page py-section-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {sectors.map((sector, i) => (
@@ -67,7 +67,7 @@ export default function PortfolioPage() {
                 </div>
             </section>
 
-            <section className="bg-surface-soft">
+            <section className="bg-sky-soft">
                 <div className="container-page py-section-lg flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                     <h3 className="text-heading-lg text-ink-deep max-w-2xl">{ctaTitle}</h3>
                     <Link to="/contact" className="btn-pill-primary" data-testid="portfolio-cta">

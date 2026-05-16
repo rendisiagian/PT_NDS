@@ -27,7 +27,7 @@ export default function BlogPage() {
                 <p className="mt-6 max-w-3xl text-base sm:text-lg text-ink-charcoal leading-relaxed">{b.sub}</p>
             </section>
 
-            <section className="bg-surface-soft" data-testid="blog-list">
+            <section className="bg-sky-soft" data-testid="blog-list">
                 <div className="container-page py-section-lg">
                     {loading ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

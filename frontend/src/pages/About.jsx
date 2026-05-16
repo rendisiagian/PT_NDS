@@ -30,7 +30,7 @@ export default function AboutPage() {
                 <p className="mt-6 max-w-3xl text-base sm:text-lg text-ink-charcoal leading-relaxed">{sub}</p>
             </section>
 
-            <section className="bg-surface-soft" data-testid="about-kata-sambutan">
+            <section className="bg-sky-soft" data-testid="about-kata-sambutan">
                 <div className="container-page py-section-lg grid grid-cols-1 lg:grid-cols-12 gap-10">
                     <div className="lg:col-span-4">
                         <p className="text-xs font-bold uppercase tracking-widest text-cobalt">CEO</p>
@@ -58,17 +58,18 @@ export default function AboutPage() {
                         <h3 className="mt-3 text-heading-lg text-ink-deep">{a.visionTitle}</h3>
                         <p className="mt-4 text-base text-ink-charcoal leading-relaxed">{vision}</p>
                     </div>
-                    <div className="card-feature bg-ink-deep text-canvas border-ink-deep">
-                        <p className="text-xs font-bold uppercase tracking-widest text-cobalt-soft">{a.missionTitle}</p>
-                        <h3 className="mt-3 text-heading-lg">{a.missionTitle}</h3>
-                        <ol className="mt-4 space-y-3 list-decimal list-outside pl-5 text-canvas/90 text-base leading-relaxed">
+                    <div className="card-feature bg-gradient-to-br from-cobalt-deep via-cobalt to-cobalt-bright text-canvas border-cobalt-deep relative overflow-hidden">
+                        <div aria-hidden className="absolute -right-16 -top-16 w-48 h-48 rounded-full bg-canvas/10 blur-3xl" />
+                        <p className="text-xs font-bold uppercase tracking-widest text-canvas/70 relative">{a.missionTitle}</p>
+                        <h3 className="mt-3 text-heading-lg relative">{a.missionTitle}</h3>
+                        <ol className="mt-4 space-y-3 list-decimal list-outside pl-5 text-canvas/90 text-base leading-relaxed relative">
                             {mission.map((m, i) => <li key={i}>{m}</li>)}
                         </ol>
                     </div>
                 </div>
             </section>
 
-            <section className="bg-surface-soft" data-testid="about-values">
+            <section className="bg-sky-tint" data-testid="about-values">
                 <div className="container-page py-section-lg">
                     <h2 className="text-display text-ink-deep max-w-2xl">{a.valuesTitle}</h2>
                     <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

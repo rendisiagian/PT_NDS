@@ -54,7 +54,7 @@ export default function ContactPage() {
                 <p className="mt-6 max-w-3xl text-base sm:text-lg text-ink-charcoal leading-relaxed">{sub}</p>
             </section>
 
-            <section className="bg-surface-soft">
+            <section className="bg-sky-tint">
                 <div className="container-page py-section-lg grid grid-cols-1 lg:grid-cols-12 gap-10">
                     <div className="lg:col-span-5 space-y-5" data-testid="contact-info">
                         <InfoBlock Icon={MapPin} title={c.address} body={address} />

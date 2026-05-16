@@ -555,7 +555,7 @@ SEED_SETTINGS = {
     "hero_badge": {"id": "Sejak 22 Mei 2023", "en": "Since May 22, 2023"},
     "hero_title": {"id": "Plat polymer presisi. Untuk percetakan yang menuntut hasil sempurna.", "en": "Precision polymer plates. For printers who demand perfect results."},
     "hero_sub": {"id": "Tepat. Cepat. Terukur. Kami memproses plat polymer dengan teknologi Computer-to-Plate (CTP) modern untuk hasil cetak yang konsisten setiap kali.", "en": "Accurate. Fast. Measurable. We process polymer plates with modern Computer-to-Plate (CTP) technology for consistent print quality, every time."},
-    "hero_image": {"url": "https://images.unsplash.com/photo-1601225998165-1be25cfd5d97?auto=format&fit=crop&w=2000&q=85"},
+    "hero_image": {"url": ""},
     # CTA banner
     "cta_banner_title": {"id": "Siap menaikkan kualitas cetak Anda?", "en": "Ready to raise your print quality?"},
     "cta_banner_body": {"id": "Diskusikan kebutuhan plat polymer Anda dengan tim kami. Konsultasi gratis.", "en": "Discuss your polymer plate needs with our team. Free consultation."},

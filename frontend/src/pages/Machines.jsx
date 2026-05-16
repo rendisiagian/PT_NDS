@@ -57,7 +57,7 @@ export default function MachinesPage() {
                 </div>
             </section>
 
-            <section className="bg-surface-soft" data-testid="machines-specs">
+            <section className="bg-sky-soft" data-testid="machines-specs">
                 <div className="container-page py-section-lg">
                     <h2 className="text-display text-ink-deep max-w-2xl">{m.specsTitle}</h2>
                     <div className="mt-8 card-feature p-0 overflow-hidden">

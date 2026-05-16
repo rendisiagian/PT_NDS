@@ -14,36 +14,36 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #ffffff;
-    color: #1C1E21;
+    color: #1C2541;
     letter-spacing: -0.01em;
 }
 
 ::selection {
-    background: #0064E0;
+    background: #1E3FAD;
     color: #ffffff;
 }
 
 @layer base {
     :root {
         --background: 0 0% 100%;
-        --foreground: 200 14% 7%;
+        --foreground: 224 39% 18%;
         --card: 0 0% 100%;
-        --card-foreground: 200 14% 7%;
+        --card-foreground: 224 39% 18%;
         --popover: 0 0% 100%;
-        --popover-foreground: 200 14% 7%;
-        --primary: 200 14% 7%;
+        --popover-foreground: 224 39% 18%;
+        --primary: 224 71% 22%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 210 17% 96%;
-        --secondary-foreground: 200 14% 7%;
-        --muted: 210 17% 96%;
-        --muted-foreground: 210 13% 42%;
-        --accent: 213 100% 44%;
+        --secondary: 220 60% 96%;
+        --secondary-foreground: 224 71% 22%;
+        --muted: 220 60% 96%;
+        --muted-foreground: 220 17% 45%;
+        --accent: 224 71% 40%;
         --accent-foreground: 0 0% 100%;
         --destructive: 350 78% 51%;
         --destructive-foreground: 0 0% 100%;
-        --border: 210 14% 84%;
-        --input: 210 14% 84%;
-        --ring: 213 100% 44%;
+        --border: 218 23% 87%;
+        --input: 218 23% 87%;
+        --ring: 224 71% 40%;
         --radius: 8px;
     }
 }
@@ -54,44 +54,45 @@ body {
 }
 
 @layer components {
-    /* Pill primary button (marketing surfaces) */
+    /* Pill primary button — deep royal blue (brand) */
     .btn-pill-primary {
-        @apply inline-flex items-center justify-center rounded-pill bg-ink-deep text-white px-7 py-3.5 text-sm font-bold tracking-tighter-md transition-colors duration-200;
+        @apply inline-flex items-center justify-center rounded-pill bg-cobalt text-white px-7 py-3.5 text-sm font-bold tracking-tighter-md transition-all duration-200 shadow-[0_4px_14px_rgba(30,63,173,0.25)];
     }
-    .btn-pill-primary:hover { background: #1c1e21; }
-    .btn-pill-primary:active { background: #444950; }
+    .btn-pill-primary:hover { background: #152D85; box-shadow: 0 6px 20px rgba(30,63,173,0.35); transform: translateY(-1px); }
+    .btn-pill-primary:active { background: #0F2370; transform: translateY(0); }
 
-    /* Pill commerce CTA (cobalt) */
+    /* Pill commerce CTA — bright accent blue */
     .btn-pill-cta {
-        @apply inline-flex items-center justify-center rounded-pill bg-cobalt text-white px-7 py-3.5 text-sm font-bold tracking-tighter-md transition-colors duration-200;
+        @apply inline-flex items-center justify-center rounded-pill bg-cobalt-bright text-white px-7 py-3.5 text-sm font-bold tracking-tighter-md transition-all duration-200 shadow-[0_4px_14px_rgba(42,76,203,0.28)];
     }
-    .btn-pill-cta:hover { background: #0457CB; }
+    .btn-pill-cta:hover { background: #1E3FAD; box-shadow: 0 6px 20px rgba(42,76,203,0.38); transform: translateY(-1px); }
 
     /* Outlined secondary */
     .btn-pill-secondary {
-        @apply inline-flex items-center justify-center rounded-pill bg-transparent text-ink-deep px-7 py-3 text-sm font-bold tracking-tighter-md border-2 border-ink-deep transition-colors duration-200;
+        @apply inline-flex items-center justify-center rounded-pill bg-transparent text-cobalt px-7 py-3 text-sm font-bold tracking-tighter-md border-2 border-cobalt transition-all duration-200;
     }
-    .btn-pill-secondary:hover { background: #0A1317; color: #ffffff; }
+    .btn-pill-secondary:hover { background: #1E3FAD; color: #ffffff; }
 
     /* Ghost button */
     .btn-pill-ghost {
-        @apply inline-flex items-center justify-center rounded-pill bg-transparent text-ink-deep px-5 py-2.5 text-sm font-bold tracking-tighter-md transition-colors duration-200;
-        border: 2px solid rgba(10, 19, 23, 0.12);
+        @apply inline-flex items-center justify-center rounded-pill bg-transparent text-cobalt px-5 py-2.5 text-sm font-bold tracking-tighter-md transition-colors duration-200;
+        border: 2px solid rgba(30, 63, 173, 0.18);
     }
-    .btn-pill-ghost:hover { border-color: rgba(10, 19, 23, 0.32); }
+    .btn-pill-ghost:hover { border-color: rgba(30, 63, 173, 0.48); background: rgba(30, 63, 173, 0.04); }
 
     /* Pill nav tab */
     .pill-tab {
         @apply inline-flex items-center justify-center rounded-pill bg-canvas text-ink px-4 py-2 text-sm font-bold border border-hairline transition-colors duration-200;
     }
-    .pill-tab:hover { border-color: #0A1317; }
+    .pill-tab:hover { border-color: #1E3FAD; color: #1E3FAD; }
     .pill-tab-active {
-        @apply inline-flex items-center justify-center rounded-pill bg-ink-deep text-canvas px-4 py-2 text-sm font-bold transition-colors duration-200;
+        @apply inline-flex items-center justify-center rounded-pill bg-cobalt text-canvas px-4 py-2 text-sm font-bold transition-colors duration-200 shadow-[0_2px_8px_rgba(30,63,173,0.25)];
     }
 
-    /* Promo banner */
+    /* Promo banner — deep brand blue */
     .promo-banner {
-        @apply w-full bg-ink-deep text-canvas text-sm font-bold tracking-tighter-md px-6 py-3 flex items-center justify-center gap-2;
+        @apply w-full bg-cobalt text-canvas text-sm font-bold tracking-tighter-md px-6 py-3 flex items-center justify-center gap-2;
+        background: linear-gradient(90deg, #152D85 0%, #1E3FAD 50%, #2A4CCB 100%);
     }
 
     /* Photographic feature card */
@@ -102,6 +103,24 @@ body {
         @apply rounded-4xl bg-canvas border border-hairline-soft p-8;
     }
 
+    /* Organic blob shape used on hero photo */
+    .blob-shape {
+        border-radius: 62% 38% 56% 44% / 50% 56% 44% 50%;
+        animation: blob-morph 14s ease-in-out infinite;
+    }
+    @keyframes blob-morph {
+        0%, 100% { border-radius: 62% 38% 56% 44% / 50% 56% 44% 50%; }
+        50% { border-radius: 44% 56% 38% 62% / 56% 50% 50% 44%; }
+    }
+
+    /* Soft sky gradient background — for hero & feature sections */
+    .bg-sky-tint {
+        background: linear-gradient(180deg, #F4F8FF 0%, #E8F0FF 60%, #F4F8FF 100%);
+    }
+    .bg-sky-soft {
+        background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%);
+    }
+
     /* Section spacing helper */
     .section { @apply py-section-lg; }
     .container-page { @apply mx-auto max-w-[1280px] px-6 lg:px-10; }
@@ -110,19 +129,19 @@ body {
     .text-hero {
         font-size: clamp(36px, 7vw, 72px);
         line-height: 1.04;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: -0.025em;
     }
     .text-display {
         font-size: clamp(28px, 4.5vw, 48px);
         line-height: 1.1;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: -0.02em;
     }
     .text-heading-lg {
         font-size: clamp(24px, 3vw, 36px);
         line-height: 1.18;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: -0.018em;
     }
     .text-heading-md-light {

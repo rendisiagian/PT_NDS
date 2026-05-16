@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
+import HeroIllustration from "@/components/HeroIllustration";
 import { useLang } from "@/contexts/LanguageContext";
 import { useSite, getText, getImage, pickLang } from "@/contexts/SiteContext";
 import { resolveMediaUrl } from "@/lib/media";
 
-const HERO_FALLBACK =
-    "https://images.unsplash.com/photo-1601225998165-1be25cfd5d97?auto=format&fit=crop&w=2000&q=85";
+// Hero falls back to <HeroIllustration /> SVG when no image is set in admin.
 const MACHINE_IMG_1 =
     "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&w=1600&q=85";
 const MACHINE_IMG_2 =
@@ -19,7 +19,7 @@ export default function HomePage() {
     const h = t.home;
     const { settings, collections } = useSite();
 
-    const heroImage = resolveMediaUrl(getImage(settings, "hero_image", HERO_FALLBACK));
+    const heroImage = resolveMediaUrl(getImage(settings, "hero_image", ""));
     const services = collections.services || [];
     const machines = collections.machines || [];
 
@@ -27,18 +27,22 @@ export default function HomePage() {
         <main data-testid="home-page">
             <SEO />
             {/* HERO */}
-            <section className="relative" data-testid="home-hero">
-                <div className="container-page pt-12 lg:pt-20 pb-section">
+            <section className="relative bg-sky-tint overflow-hidden" data-testid="home-hero">
+                {/* Decorative soft blobs */}
+                <div aria-hidden className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-cobalt-soft/15 blur-3xl" />
+                <div aria-hidden className="absolute top-40 -left-40 w-[500px] h-[500px] rounded-full bg-cobalt/10 blur-3xl" />
+                <div className="container-page pt-12 lg:pt-20 pb-section relative">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                        <div className="lg:col-span-7 animate-fade-up">
+                        <div className="lg:col-span-6 animate-fade-up">
                             <span
-                                className="inline-flex items-center gap-2 rounded-pill border border-hairline px-3 py-1 text-xs font-bold uppercase tracking-widest text-ink-charcoal"
+                                className="inline-flex items-center gap-2 rounded-pill bg-canvas border border-hairline px-3 py-1 text-xs font-bold uppercase tracking-widest text-cobalt shadow-sm"
                                 data-testid="home-badge"
                             >
-                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-cobalt" />
+                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-cobalt animate-pulse" />
                                 {getText(settings, "hero_badge", lang, h.badge)}
                             </span>
-                            <h1 className="mt-5 text-hero text-ink-deep" data-testid="home-hero-title">
+                            <p className="mt-5 text-base font-bold text-cobalt tracking-tight">PT. NURI DWI SUKSES</p>
+                            <h1 className="mt-2 text-hero text-ink-deep" data-testid="home-hero-title">
                                 {getText(settings, "hero_title", lang, h.heroTitle)}
                             </h1>
                             <p className="mt-6 max-w-xl text-base sm:text-lg text-ink-charcoal leading-relaxed">
@@ -59,22 +63,27 @@ export default function HomePage() {
                                 <StatBox value="24/7" label={h.statCommit} />
                             </dl>
                         </div>
-                        <div className="lg:col-span-5 relative" data-testid="home-hero-photo">
-                            <div className="card-feature-photo aspect-[4/5] animate-fade-up">
-                                <img
-                                    src={heroImage}
-                                    alt="Polymer plate printing — PT. NURI DWI SUKSES"
-                                    className="w-full h-full object-cover"
-                                    loading="eager"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/40 to-transparent" />
-                                <div className="absolute bottom-6 left-6 right-6 text-canvas">
-                                    <p className="text-xs font-bold uppercase tracking-widest opacity-80">CRON HDI-920 S+</p>
-                                    <p className="text-lg font-bold mt-1">Computer-to-Plate Imaging</p>
-                                </div>
+                        <div className="lg:col-span-6 relative flex items-center justify-center" data-testid="home-hero-photo">
+                            {/* Soft glow behind blob */}
+                            <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-cobalt-soft/30 via-transparent to-cobalt-bright/20 blur-3xl scale-90" />
+                            <div className="relative blob-shape aspect-square w-full max-w-[520px] overflow-hidden shadow-[0_30px_80px_-20px_rgba(30,63,173,0.45)] animate-fade-up">
+                                {heroImage ? (
+                                    <>
+                                        <img
+                                            src={heroImage}
+                                            alt="Polymer plate printing — PT. NURI DWI SUKSES"
+                                            className="w-full h-full object-cover"
+                                            loading="eager"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-cobalt-deep/20 via-transparent to-transparent" />
+                                    </>
+                                ) : (
+                                    <HeroIllustration className="w-full h-full" />
+                                )}
                             </div>
+                            {/* Floating spec card */}
                             <div
-                                className="hidden lg:block absolute -bottom-6 -left-6 card-feature w-64 shadow-[rgba(20,22,26,0.18)_0px_8px_24px_0px]"
+                                className="hidden lg:block absolute -bottom-2 -left-4 card-feature w-64 shadow-[0_20px_50px_-12px_rgba(30,63,173,0.35)] border-cobalt/10"
                                 data-testid="home-floating-card"
                             >
                                 <p className="text-xs font-bold uppercase tracking-widest text-cobalt">Quality first</p>
@@ -84,13 +93,25 @@ export default function HomePage() {
                                         : "Consistent dot sharpness across every plate — production you can rely on."}
                                 </p>
                             </div>
+                            <div
+                                className="hidden lg:flex absolute -top-2 -right-2 card-feature w-52 items-center gap-3 p-5 shadow-[0_20px_50px_-12px_rgba(30,63,173,0.35)] border-cobalt/10"
+                                data-testid="home-floating-card-2"
+                            >
+                                <div className="w-10 h-10 rounded-pill bg-cobalt text-canvas flex items-center justify-center shrink-0">
+                                    <CheckCircle2 className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-cobalt">CTP Ready</p>
+                                    <p className="text-xs text-ink-deep font-bold mt-0.5">CRON HDI-920 S+</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Services teaser */}
-            <section className="bg-surface-soft" data-testid="home-services">
+            <section className="bg-sky-soft" data-testid="home-services">
                 <div className="container-page py-section-lg">
                     <SectionHeader
                         eyebrow={h.sectionServicesEyebrow}
@@ -160,7 +181,7 @@ export default function HomePage() {
             </section>
 
             {/* Why us — keeps static (rarely changed) */}
-            <section className="bg-surface-soft" data-testid="home-why">
+            <section className="bg-sky-tint" data-testid="home-why">
                 <div className="container-page py-section-lg">
                     <h2 className="text-display text-ink-deep max-w-2xl">{h.sectionWhyTitle}</h2>
                     <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -185,8 +206,9 @@ export default function HomePage() {
             {/* CTA banner */}
             <section className="bg-canvas" data-testid="home-cta-banner">
                 <div className="container-page py-section-lg">
-                    <div className="rounded-4xl bg-ink-deep text-canvas p-10 sm:p-section relative overflow-hidden">
-                        <div aria-hidden className="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-cobalt/30 blur-3xl" />
+                    <div className="rounded-4xl bg-gradient-to-br from-cobalt-deep via-cobalt to-cobalt-bright text-canvas p-10 sm:p-section relative overflow-hidden">
+                        <div aria-hidden className="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-cobalt-soft/40 blur-3xl" />
+                        <div aria-hidden className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-canvas/10 blur-3xl" />
                         <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                             <div>
                                 <h2 className="text-display">{getText(settings, "cta_banner_title", lang, h.ctaBannerTitle)}</h2>
